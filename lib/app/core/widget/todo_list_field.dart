@@ -31,6 +31,7 @@ class TodoListField extends StatelessWidget {
       valueListenable: obscureTextVN,
       builder: (_, obscureTextValue, child) {
         return TextFormField(
+          validator: validator,
           decoration: InputDecoration(
             labelText: label,
             labelStyle: TextStyle(fontSize: 15, color: Colors.black),

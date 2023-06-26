@@ -5,5 +5,5 @@ import 'package:todo_list_provider/app/core/modules/app_module.dart';
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(AppModule());
+  runApp(const AppModule());
 }

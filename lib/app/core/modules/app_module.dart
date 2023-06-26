@@ -31,7 +31,7 @@ class AppModule extends StatelessWidget {
           ),
         )
       ],
-      child: AppWidget(),
+      child: const AppWidget(),
     );
   }
 }
