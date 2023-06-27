@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 class Validators {
   Validators._();
@@ -6,9 +6,13 @@ class Validators {
   static FormFieldValidator compare(TextEditingController? valueEC, String message) {
     return (value) {
       final valueCompare = valueEC?.text ?? '';
-      if (value == null || (value != null && value != valueCompare)) {
-        return message;
+      if (value == null || (valueCompare != value)) {
+        print(value);
+        print(valueCompare);
+        return message; 
       }
+      return null;
     };
   }
+
 }

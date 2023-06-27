@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list_provider/app/core/modules/auth/register/register_controller.dart';
+import 'package:todo_list_provider/app/core/notifier/default_listener_notifier.dart';
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
 import 'package:todo_list_provider/app/core/validators/validators.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_field.dart';
@@ -17,27 +18,23 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
 
-  final TextEditingController _emailEC = TextEditingController();
-  final TextEditingController _passwordEC = TextEditingController();
-  final TextEditingController _confirmPasswordEC = TextEditingController();
+  final _emailEC = TextEditingController();
+  final _passwordEC = TextEditingController();
+  final _confirmPasswordEC = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    context.read<RegisterController>().addListener(() {
-      final controller = context.read<RegisterController>();
-      var success = controller.success;
-      var error = controller.error;
-
-      if (success) {
+    final defaultListener = DefaultListenerNotifier(
+        changeNotifier: context.read<RegisterController>());
+    defaultListener.listener(
+      context: context,
+      successCallback: (defaultChangeNotifier, listenerInstance) {
+        listenerInstance.dispose();
         Navigator.of(context).pop();
-      } else if (error != null && error.isNotEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(error),
-          backgroundColor: Colors.red,
-        ));
-      }
-    });
+      },
+     // Metodo Opcional: errorCallBack: (defaultChangeNotifier, listenerInstance) {},
+    );
   }
 
   @override
@@ -45,7 +42,6 @@ class _RegisterPageState extends State<RegisterPage> {
     _emailEC.dispose();
     _passwordEC.dispose();
     _confirmPasswordEC.dispose();
-    context.read<RegisterController>().removeListener(() {});
     super.dispose();
   }
 
@@ -125,13 +121,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 20,
                   ),
                   TodoListField(
-                    label: 'Confirmar senha',
+                    label: 'Confirma Senha',
                     obscureText: true,
                     controller: _confirmPasswordEC,
                     validator: Validatorless.multiple([
-                      Validatorless.required('Confirma senha obrigatoria'),
+                      Validatorless.required('Senha obrigatoria'),
                       Validators.compare(
-                          _passwordEC, 'Senha diferente de confirma senha')
+                          _passwordEC, 'As senhas sao diferentes')
                     ]),
                   ),
                   SizedBox(
