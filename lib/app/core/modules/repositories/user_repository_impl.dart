@@ -86,7 +86,6 @@ class UserRepositoryImpl implements UserRepository {
       if (googleUser != null) {
         loginMethods =
             await _firebaseAuth.fetchSignInMethodsForEmail(googleUser.email);
-            print(loginMethods);
         if (loginMethods.contains('password')) {
           throw AuthException(message: 'E-mail ja utilizado para cadastro');
         } else {
@@ -110,5 +109,11 @@ class UserRepositoryImpl implements UserRepository {
       }
     }
     return null;
+  }
+
+  @override
+  Future<void> logout() async {
+    await GoogleSignIn().signOut();
+    _firebaseAuth.signOut();
   }
 }

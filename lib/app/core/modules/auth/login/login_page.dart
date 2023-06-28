@@ -98,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                               children: [
                                 TextButton(
                                   onPressed: () {
-                                    if (_emailEC.text.isNotEmpty) {
+                                    if (_emailEC.text.isEmpty) {
                                       //RecuperarSenha
                                       context
                                           .read<LoginController>()

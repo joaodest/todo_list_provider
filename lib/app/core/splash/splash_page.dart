@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list_provider/app/core/widget/todo_list_logo.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
@@ -10,10 +11,7 @@ class SplashPage extends StatelessWidget {
         title: const Text(''),
       ),
       body: Center(
-        child: TextButton(
-          onPressed: () => Navigator.pushNamed(context, '/login'),
-          child: Text('login'),
-        ),
+        child: TodoListLogo(),
       ),
     );
   }
