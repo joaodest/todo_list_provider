@@ -3,6 +3,7 @@ import 'package:todo_list_provider/app/core/modules/auth/login/login_controller.
 import 'package:todo_list_provider/app/core/modules/auth/login/login_page.dart';
 import 'package:todo_list_provider/app/core/modules/auth/register/register_controller.dart';
 import 'package:todo_list_provider/app/core/modules/auth/register/register_page.dart';
+
 import 'package:todo_list_provider/app/core/modules/todo_list_module.dart';
 
 class AuthModule extends TodoListModule {
@@ -18,7 +19,7 @@ class AuthModule extends TodoListModule {
           ],
           routers: {
             '/login': (context) => LoginPage(),
-            '/register': (context) => RegisterPage()
+            '/register': (context) => RegisterPage(),
           },
         );
 }

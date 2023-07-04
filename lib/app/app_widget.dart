@@ -5,6 +5,7 @@ import 'package:todo_list_provider/app/core/modules/auth/auth_module.dart';
 
 import 'package:todo_list_provider/app/core/database/sqlite_adm_connection.dart';
 import 'package:todo_list_provider/app/core/modules/home/home_module.dart';
+import 'package:todo_list_provider/app/core/modules/tasks/tasks_module.dart';
 import 'package:todo_list_provider/app/core/navigator/todo_list_navigator.dart';
 
 import 'package:todo_list_provider/app/core/splash/splash_page.dart';
@@ -40,9 +41,10 @@ class _AppWidgetState extends State<AppWidget> {
       navigatorKey: TodoListNavigator.navigatorKey,
       routes: {
         ...AuthModule().routers,
-        ...HomeModule().routers
+        ...HomeModule().routers,
+        ...TasksModule().routers
       },
-      home: SplashPage(),
+      home: const SplashPage(),
     );
   }
 }
